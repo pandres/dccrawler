@@ -42,6 +42,11 @@ class USCACrawler(object):
 
         return self._results
 
+    def print_results(self):
+        print "Number       Date        Title"
+        for result in self._results:
+            print "{0} {1} {2}".format(result['opinion_num'], result['date'],
+                    result['title'])
 
 def main():
     """
@@ -49,6 +54,7 @@ def main():
     crawler = USCACrawler()
     content = crawler.get_html()
     results = crawler.parse(content)
+    crawler.print_results()
     with open(OUTFILE, 'w') as outfile:
         json.dump(results, outfile)
 
